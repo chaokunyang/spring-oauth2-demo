@@ -61,8 +61,8 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.antMatcher("/**").authorizeRequests() // 	All requests are protected by default
-                .antMatchers("/", "/login**", "/webjars/**").permitAll().anyRequest() // 	The home page and login endpoints are explicitly excluded
-                .authenticated() // All other endpoints require an authenticated user
+                .antMatchers("/", "/login**", "/webjars/**").permitAll() // 	The home page and login endpoints are explicitly excluded
+                .anyRequest().authenticated() // All other endpoints require an authenticated user
                 .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")) // Unauthenticated users are re-directed to the home page
                 .and().logout()
                 .logoutSuccessUrl("/").permitAll().and().csrf()
